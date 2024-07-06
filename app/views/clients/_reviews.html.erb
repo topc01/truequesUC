@@ -1,0 +1,8 @@
+<% reviews.each do |review| %>
+  <div class="review">
+    <strong>Titulo:</strong> <%= review.title %><br>
+    <strong>Valoracion:</strong> <%= review.grade %><br>
+    <strong>Descripción:</strong> <%= review.content %><br>
+  </div>
+  <br> <!-- Agrega un salto de línea entre cada reseña -->
+<% end %>

@@ -1,0 +1,7 @@
+<div class="content">
+    <% product = Product.find(request.product_id) %>
+    <% offer = Product.find(request.offer_id) %>
+    <h3>Haz ofrecido intercambiar <%= offer.title %> por <%= product.title %></h3>
+    <p>Descripción de tu producto: <%= product.description %></p>
+    <p>Descripción del producto que te han ofrecido: <%= offer.description %></p>
+</div>

@@ -1,0 +1,65 @@
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+.contenedor {
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+  }
+.info {
+    width: 50%; 
+  }
+
+  .imagen {
+
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+    margin-top: 150px
+  }
+  .subir_imagen {
+    display: flex;
+    justify-content: center; /* Centra horizontalmente en el eje X */
+    align-items: center; /* Centra verticalmente en el eje Y */
+    margin-bottom: 20px;
+  }
+  .contenedor input {
+    width: 100%; 
+}
+
+  input.texto {
+    border: 1px solid black;
+    height: 30px;
+    margin: 0;
+  }
+  input.textod {
+    border: 1px solid black;
+    height: 100px;
+    margin: 0;
+  }
+  p.textop {
+    border: 1px solid black;
+    padding: 100px;
+    margin: 0;
+  }
+  .boton_editar {
+    display: block; /* Hace que el enlace sea un bloque y ocupe todo el ancho disponible */
+    text-align: center; 
+    border: 1px solid black; 
+    padding: 10px 20px; 
+    background-color: #90EE90; 
+    color: #000; 
+    text-decoration: none; 
+  }
+
+  .editar{
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    margin-top: 50px;
+  }

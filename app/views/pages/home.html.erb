@@ -1,0 +1,74 @@
+<!-- app/views/pages/home.html.erb -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>TruequesUC - Intercambia tus muebles y productos de casa</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <style>
+        /* Agrega un estilo personalizado para el fondo degradado con imagen */
+        .hero {
+            background-image: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.3)), url('/assets/salon-con-diferentes-muebles-para-guardar-00560105_aa92107d_230503144421_1999x1333.jpg'); /* Ruta de tu imagen */
+            background-size: cover;
+            background-position: center;
+        }
+        /* Ajusta el color del texto para que sea visible en el fondo degradado */
+        .hero-body h1, .hero-body h2 {
+            color: #333333; /* Color de texto blanco */
+        }
+        footer {
+            padding: 20px;
+            text-align: center;
+            bottom: 0;
+            width: 100%
+        }
+    </style>
+</head>
+<body>
+    <section class="hero is-bold">
+        <div class="hero-body">
+            <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
+                <h1 class="title is-size-1">
+                    TruequesUC
+                </h1>
+                <h2 class="subtitle">
+                    Intercambia tus muebles y productos de casa
+                </h2>
+            </div>
+        </div>
+    </section>
+
+    <section class="section has-text-centered">
+    <p class="subtitle">
+    En un mundo donde el consumo desenfrenado amenaza nuestro medio ambiente, la contaminación por muebles desechados se convierte en una carga silenciosa y preocupante. Cada año, toneladas de muebles encuentran su camino hacia vertederos, contribuyendo a la contaminación y dejando una huella ecológica devastadora. Sin embargo, existe una solución simple y poderosa: el trueque de muebles. 
+    </p>
+    <img src="/assets/La-industria-del-mueble-es-una-de-las-mas-contaminantes.jpg" alt="Descripción de la imagen" style="width: 50%; height: auto;">
+    <p class="subtitle">
+    Transformemos esta realidad sombría y abracemos un cambio que no solo embellezca nuestros hogares, sino que también alivie la carga sobre nuestro planeta.
+    </p>
+    </section>
+
+    <section class="section">
+        <div class="container has-text-centered">
+            <p class="subtitle">
+            Imagina un mundo donde los muebles, en lugar de ser desechados, encuentran un segundo propósito y una segunda vida. El trueque de muebles no solo es una opción económica y ecológica, sino también una oportunidad para renovar nuestro espacio vital con piezas únicas y llenas de historias. Al intercambiar, no solo reducimos la cantidad de desechos, sino que también construimos una comunidad de amantes del hogar comprometidos con la sostenibilidad.
+            </p>
+        </div>
+    </section>
+
+    <section class="section has-text-centered">
+
+            <h2 class="title">Sé parte del cambio</h2>
+
+            <p class="subtitle">
+                Únete a TruequesUC y contribuye a reducir la cantidad de muebles desechados. ¡Intercambia, comparte y ayuda al medio ambiente!
+            </p>
+            <a href="<%= products_path %>" class="button is-primary">Explorar productos</a>
+    </section>
+    
+</body>
+<footer>
+<p>© 2023 TruequesUC. Todos los derechos reservados.</p>
+</footer>
+
+
+</html>

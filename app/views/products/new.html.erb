@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>TruequesUC - Intercambia tus muebles y productos de casa</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <style>
+        /* Agrega un estilo personalizado para el fondo degradado con imagen */
+        .hero {
+            background-image: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.3)), url('/assets/salon-con-diferentes-muebles-para-guardar-00560105_aa92107d_230503144421_1999x1333.jpg'); /* Ruta de tu imagen */
+            background-size: cover;
+            background-position: center;
+        }
+        /* Ajusta el color del texto para que sea visible en el fondo degradado */
+        .hero-body h1, .hero-body h2 {
+            color: #333333; /* Color de texto blanco */
+        }
+        footer {
+            padding: 20px;
+            text-align: center;
+            bottom: 0;
+            width: 100%
+        }
+    </style>
+</head>
+<body>
+    <section class="hero is-bold">
+        <div class="hero-body">
+            <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
+                <h1 class="title is-size-1">
+                    TruequesUC
+                </h1>
+                <h2 class="subtitle">
+                    Intercambia tus muebles y productos de casa
+                </h2>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <h1 class="title">Crear nuevo producto</h1>
+        </div>
+
+        <div class="container">
+            <%= form_for(@product, url: products_path, html: { class: "box" }) do |f| %>
+                <div class="field">
+                    <%= f.label :"Titulo", class: "label" %>
+                    <div class="control">
+                        <%= f.text_field :title, class: "input" %>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <%= f.label :"Descripción", class: "label" %>
+                    <div class="control">
+                        <%= f.text_area :description, class: "textarea" %>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <%= f.label :"Peso (kg)", class: "label" %>
+                    <div class="control">
+                        <%= f.number_field :weight, class: "input" %>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <%= f.label :"Tipo", class: "label" %>
+                    <div class="control">
+                        <%= f.select :clasification, options_for_select(['Living', 'Pieza', 'Patio', 'Comedor', 'Cocina', 'Baño', 'Escritorio', 'Logia', 'Entrada', 'Sala de estar', 'Sala de juegos', 'Quincho']), { class: "select" } %>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <%= f.label :"Tiempo de uso (años)", class: "label" %>
+                    <div class="control">
+                        <%= f.number_field :use, class: "input" %>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <%= f.label :"Estado", class: "label" %>
+                    <div class="control">
+                        <%= f.select :state, options_for_select(['Nuevo', 'Usado/Como nuevo', 'Usado/Buen estado', 'Muy usado']), { class: "select" } %>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <%= f.label :"Tags", class: "label" %>
+                    <div class="control">
+                        <%= collection_check_boxes(:product, :category_ids, Category.all, :id, :name, { class: "checkbox" }, { multiple: true }) %>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <%= f.label :"Foto del producto", class: "label" %>
+                    <div class="control">
+                        <%= f.file_field :image, class: "input" %>
+                    </div>
+                </div>
+                <div class="field is-grouped is-grouped-centered">
+                    <div class="control">
+                        <%= f.submit "Crear Producto", class: "button is-primary" %>
+                    </div>
+                    <div class="control">
+                        <%= link_to "Mis Productos", products_path, class: "button is-link" %>
+                    </div>
+                </div>
+            <% end %>
+        </div>
+    </section>
+    <footer>
+        <p>© 2023 TruequesUC. Todos los derechos reservados.</p>
+    </footer>
+</body>
+</html>

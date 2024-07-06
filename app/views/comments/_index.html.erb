@@ -1,0 +1,107 @@
+<label class="label">Comentarios:</label>
+
+<div class="comment-list">
+  <% if @comments.blank? %>
+    <p>No hay comentarios.</p>
+  <% else %>
+    <% @comments.each do |comment| %>
+      <% comment_client = Client.find(comment.client_id) %>
+      <% formatted_date = comment.created_at.strftime("%H:%M - %m/%d/%Y") %>
+
+      <div class="box comment-entry media">
+        <div class="media-content">
+          <div class="content">
+            <p><strong><%= comment_client.username %>:</strong> <%= comment.content %></p>
+            <p class="is-size-7 has-text-grey"><%= formatted_date %></p>
+
+            <% if client.id != 0 && client.id == comment.client_id %>
+              <%= button_to "Eliminar", delete_comment_path(comment.id), method: :delete, class: "button is-danger is-small", data: { confirm: "¿Estás seguro de eliminar este comentario?" } %>
+            <% end %>
+
+            <div class="response-list">
+              <% if @responses.present? %>
+                <% @responses.each do |response| %>
+                  <% response_client = Client.find(response.id_response) %>
+                  <% formatted_date_2 = response.created_at.strftime("%H:%M - %m/%d/%Y") %>
+
+                  <% if response.id_comment == comment.id %>
+                    <div class="response-entry media <%= response.id_response.present? ? 'indent-response' : '' %>">
+                      <div class="media-content">
+                        <p><strong><%= response_client.username %>:</strong> <%= response.texto %></p>
+                        <p class="is-size-7 has-text-grey"><%= formatted_date_2 %></p>
+
+                        <% if client.id.present? && client.id == response.id_response %>
+                          <%= button_to "Eliminar", delete_response_path(response.id), method: :delete, class: "button is-danger is-small", data: { confirm: "¿Estás seguro de eliminar este comentario?" } %>
+                        <% end %>
+                      </div>
+                    </div>
+                  <% end %>
+                <% end %>
+              <% end %>
+            </div>
+            <br>
+            <div class="comment-reply ">
+              <div class="comment">
+                <% if client.id == 0 %>
+                  <form action="/sesion" method="post">
+                    <div class="field is-grouped">
+                      <div class="control is-expanded">
+                        <input class="input" type="text" placeholder="Escribe tu comentario aquí">
+                      </div>
+                      <div class="control">
+                        <a href="<%= new_client_session_path %>" class="button is-primary">Enviar</a>
+                      </div>
+                    </div>
+                  </form>
+                <% else %>
+                  <form action="/new_response" method="post">
+                    <input type="hidden" name="response[id_comment]" value="<%= comment.id %>">
+                    <input type="hidden" name="response[id_response]" value="<%= client.id %>">
+                    <div class="field is-grouped">
+                      <div class="control is-expanded">
+                        <input class="input" type="text" name="response[texto]" placeholder="Escribe tu respuesta aquí">
+                      </div>
+                      <div class="control">
+                        <button type="submit" class="button is-primary">Enviar</button>
+                      </div>
+                    </div>
+                  </form>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    <% end %>
+  <% end %>
+</div>
+
+<br>
+<div class="comment-reply">
+  <% if client.id == 0 %>
+    <form action="/sesion" method="post">
+      <div class="field is-grouped">
+        <div class="control is-expanded">
+          <input class="input" type="text" placeholder="Escribe tu comentario aquí">
+        </div>
+        <div class="control">
+          <a href="<%= new_client_session_path %>" class="button is-primary">Enviar</a>
+        </div>
+      </div>
+    </form>
+  <% else %>
+    <form action="/new_comment" method="post">
+      <input type="hidden" name="comment[client_id]" value="<%= client.id %>">
+      <input type="hidden" name="comment[product_id]" value="<%= product.id %>">
+      <div class="field is-grouped">
+        <div class="control is-expanded">
+          <input class="input" type="text" name="comment[content]" placeholder="Escribe tu comentario aquí">
+        </div>
+        <div class="control">
+          <button type="submit" class="button is-primary">Enviar</button>
+        </div>
+      </div>
+    </form>
+  <% end %>
+</div>

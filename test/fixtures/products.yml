@@ -1,0 +1,31 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+pintura:
+  title: pintura
+  client: cristiano
+  description: pintura de cristiano metiendo golazos
+  weight: 1
+  clasification: Living
+  use: 2
+  state: Como nuevo
+  categories: interior, decoracion, colecciones
+
+escultura:
+  title: escultura
+  client: cristiano
+  description: escultura del bicho
+  weight: 40
+  clasification: Living
+  use: 2
+  state: Como nuevo
+  categories: exterior, decoracion, colecciones, marmol
+
+lampara:
+  title: lampara
+  client: messi
+  description: lampara de pie
+  weight: 1
+  clasification: Living
+  use: 2
+  state: Como nuevo
+  categories: interior

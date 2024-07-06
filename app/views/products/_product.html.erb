@@ -1,0 +1,12 @@
+
+<div class="content">
+    <%= image_tag product.image_url, class: "product-image" if product.image %>
+    <p><strong>Nombre del Producto:</strong> <%= product.title %></p>
+    <p><strong>Descripción:</strong> <%= product.description %></p>
+    <p><strong>Tipo:</strong> <%= product.clasification %></p>
+    <div class="buttons is-centered">
+        <a href="<%= product_path(product.id) %>" class="button is-info">Ver detalles</a>
+    </div>
+
+</div>
+

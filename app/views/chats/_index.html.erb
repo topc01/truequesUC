@@ -1,0 +1,8 @@
+<div class="clientes">
+    Usuarios:
+    <% chats.each do |chat| %>
+        <% other_id = chat.client1_id == current_client.id ? chat.client2_id : chat.client1_id %>
+        <% other = Client.find(other_id) %>
+        <p><%= link_to other.username, show_chat_path(chat.id) %></p>
+    <% end %>
+</div>

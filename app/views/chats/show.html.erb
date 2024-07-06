@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>TruequesUC - Intercambia tus muebles y productos de casa</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <style>
+        /* Agrega un estilo personalizado para el fondo degradado con imagen */
+        .hero {
+            background-image: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.3)), url('/assets/salon-con-diferentes-muebles-para-guardar-00560105_aa92107d_230503144421_1999x1333.jpg'); /* Ruta de tu imagen */
+            background-size: cover;
+            background-position: center;
+        }
+        /* Ajusta el color del texto para que sea visible en el fondo degradado */
+        .hero-body h1, .hero-body h2 {
+            color: #333333; /* Color de texto blanco */
+        }
+        
+    </style>
+</head>
+<body>
+    <section class="hero is-bold">
+        <div class="hero-body">
+            <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
+                <h1 class="title is-size-1">
+                    TruequesUC
+                </h1>
+                <h2 class="subtitle">
+                    Intercambia tus muebles y productos de casa
+                </h2>
+            </div>
+        </div>
+    </section>
+
+    <div class="contenedor">
+        <%= render partial: "chats/index", locals: {
+            chats: @chats,
+            current_client: @current_client
+        }%>
+        <div class="chat">
+            <div class="nombre_chat" >
+                <p> Chat de <%= @client1.username %> con <%= @client2.username %> </p>
+            </div>
+            <div class="destinatario">
+                <ul>
+                <% @messages.each do |msg|%>
+                    <li class="<%= msg.client == @current_client ? 'sent': 'received'%>">
+                        <p><%= msg.content %></p>
+                        <div class="timestamp">
+                            <%= msg.created_at.strftime("%H:%M") %>
+                        </div>
+                    </li>
+                <% end %>
+                </ul>
+            </div>
+            <div class="mensaje">
+                <%= form_with model: Message.new, url: create_message_path(@chat.id), data: { turbo: false } do |f| %>
+                    <div class="input_chat">
+                        <%= f.text_field :content %>
+                    </div>
+                    <div class="boton">
+                        <%= f.submit "Enviar" %>
+                    </div>
+                    <% end %>
+            </div>
+    </div>
+    
+</body>

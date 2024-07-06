@@ -1,0 +1,100 @@
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+.contenedor {
+    display: flex;
+    flex: 1; 
+    align-items: stretch;
+    height: 100vh;
+}
+
+.clientes {
+    width: 20%;
+    height: 105%;
+    background-color: #f0f0f0;
+    padding: 20px;
+    border-right: 1px solid #ccc;
+}
+
+.clientes p {
+    margin-bottom: 10px;
+}
+.chat {
+    flex: 1;
+    padding: 20px;
+    position: relative; /
+}
+
+.mensaje-fondo {
+    position: fixed; /* Fija el elemento al fondo de la pantalla */
+    bottom: 0; /* Coloca el elemento en la parte inferior */
+    left: 0; /* Opcional: si deseas que esté en la esquina izquierda */
+    width: 100%; /* Ocupa todo el ancho de la pantalla */
+    background-color: #f0f0f0;
+    padding: 10px;
+}
+.mensaje {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    width: 75%;
+    justify-content: space-between; 
+    align-items: center; 
+    margin-top: 20px;
+}
+
+.input_chat {
+    width: 80%;
+    padding: 5px;
+}
+
+.boton {
+    padding: 5px 10px;
+}
+
+.sent {
+    background-color: #DCF8C6;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    width: 50%;
+    position: relative;
+    text-align: right;;
+}
+
+.sent p {
+    margin: 0;
+}
+
+.sent .timestamp {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    font-size: 12px;
+    color: #d7a4a4;
+}
+
+.received {
+    background-color: #E8E8E8;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    width: 50%;
+    position: relative;
+    text-align: left;
+}
+
+.received p {
+    margin: 0;
+}
+
+.received .timestamp {
+    bottom: 0;
+    right: 0;
+    font-size: 12px;
+    color: #d7a4a4;
+    text-align: left;
+}

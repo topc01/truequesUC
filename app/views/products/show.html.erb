@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>TruequesUC - Intercambia tus muebles y productos de casa</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <style>
+        /* Agrega un estilo personalizado para el fondo degradado con imagen */
+        .hero {
+            background-image: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.3)), url('/assets/salon-con-diferentes-muebles-para-guardar-00560105_aa92107d_230503144421_1999x1333.jpg'); /* Ruta de tu imagen */
+            background-size: cover;
+            background-position: center;
+        }
+        /* Ajusta el color del texto para que sea visible en el fondo degradado */
+        .hero-body h1, .hero-body h2 {
+            color: #333333; /* Color de texto blanco */
+        }
+
+        /* Estilo para ajustar el tamaño de la imagen en la caja de producto */
+        .product-info img {
+            max-width: 300px; /* La imagen no será más ancha que el contenedor */
+            height: auto; /* La altura se ajusta automáticamente para mantener la proporción */
+            border-radius: 8px; /* Agrega esquinas redondeadas a la imagen */
+        }
+        
+        /* Estilo para el contenido dentro de la caja del producto */
+        .product-info .content {
+            margin-top: 20px;
+        }
+
+        /* Estilo para los botones en la sección centrada */
+        .has-text-centered .button {
+            margin-right: 10px; /* Ajusta el espacio entre los botones */
+        }
+        .indent-response {
+        margin-left: 20px; /* Ajusta el valor según sea necesario */
+        }
+        footer {
+            padding: 20px;
+            text-align: center;
+            bottom: 0;
+            width: 100%
+        }
+    </style>
+</head>
+<body>
+    <section class="hero is-bold">
+        <div class="hero-body">
+            <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
+                <h1 class="title is-size-1">
+                    TruequesUC
+                </h1>
+                <h2 class="subtitle">
+                    Intercambia tus muebles y productos de casa
+                </h2>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+
+
+        <div class="column is-centered">
+        <div class="column is-6">
+        <div class="box">
+        <div class="content">
+        <div class="field has-text-centered">
+            <%= image_tag @product.image_url, class: "product-image" if @product.image %>
+            </div>
+            <div class="field">
+                <label class="label">Producto:</label>
+                <p class="texto"><%= @product.title %></p>
+            </div>
+            <div class="field">
+                <label class="label">Descripción:</label>
+                <p class="texto"><%= @product.description %></p>
+            </div>
+            <div class="field">
+                <label class="label">Peso:</label>
+                <p class="texto"><%= @product.weight %></p>
+            </div>
+            <div class="field">
+                <label class="label">Clasificación:</label>
+                <p class="texto"><%= @product.clasification %></p>
+            </div>
+            <div class="field">
+                <label class="label">Años de uso:</label>
+                <p class="texto"><%= @product.use %></p>
+            </div>
+            <div class="field">
+                <label class="label">Estado:</label>
+                <p class="texto"><%= @product.state %></p>
+            </div>
+            <div class="field">
+                <label class="label">Dueño:</label>
+                <p class="texto"><%= @client.username %></p>
+            </div>
+            <div class="field">
+                <label class="label">Tags:</label>
+                <p class="texto"><%= @product.categories.map(&:name).join(', ') %></p>
+            </div>
+            <div class="field">
+            <%= render 'comments/index', product: @product, client: @comment_client, comments: @comments, responses: @responses%>
+            </div>
+
+        <div class="section has-text-centered">
+            <% if @client == current_client %>
+                <%= link_to "Editar", edit_product_path(@product.id), class: "button is-info" %>
+                <%= link_to "Eliminar", product_path(@product.id), data: { turbo_method: :delete, turbo_confirm: "Confirme para eliminar productos" }, class: "button is-danger" %>
+            <% else %>
+                <a href="<%= client_show_path(@client.id) %>" class="button is-primary">Ver Dueño</a>
+                <% if @product.available %>
+                    <a href="<%= new_request_path(@product.id) %>" class="button is-primary">Enviar solicitud</a>
+                <% else %>
+                    <p class="is-size-5">Este producto ya no está disponible.</p>
+                <% end %>
+            <% end %>
+        </div>
+        </div>
+        </div>
+        </div>
+        </div>
+        </div>
+    </section>
+    <footer>
+    <p>© 2023 TruequesUC. Todos los derechos reservados.</p>
+</footer>
+
+</body>
+
+</html>

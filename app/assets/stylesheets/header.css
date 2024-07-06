@@ -1,0 +1,30 @@
+
+.enlaces ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .container{
+    display: flex;
+    align-items: center; 
+
+  }
+  .container .buscador{
+    display: flex;
+    justify-content: space-between; 
+    align-items: center; 
+  }
+  .container .input_buscador{
+    width: 600px; 
+  }
+  .boton{
+    height: 100%; /* Esto hace que el botón tenga la misma altura que el div */
+}
+  .enlaces ul li {
+    display: inline-block;
+
+  }
+  .links{
+    text-decoration: none; /* Elimina el subrayado */
+    color: #000;
+  }

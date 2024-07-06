@@ -1,0 +1,54 @@
+<%= stylesheet_link_tag "header", media: "all" %>
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <%= link_to root_path, class: "navbar-item" do %>
+      <h1 class="title is-4">TruequesUC</h1>
+    <% end %>
+
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+
+  <div id="navbarBasicExample" class="navbar-menu">
+    <div class="navbar-start">
+      <a href="<%= products_path %>" class="navbar-item">Inicio</a>
+
+      <% if client_signed_in? %>
+        <a href="<%= client_products_path %>" class="navbar-item">Mis Productos</a>
+        <a href="<%= chat_path %>" class="navbar-item">Chat</a>
+        <a href="<%= client_show_path(current_client.id) %>" class="navbar-item">Perfil</a>
+        <a href="<%= requests_path %>" class="navbar-item">Carrito</a>
+        <% if current_client.is_admin %>
+          <a href="<%= admin_page_path %>" class="navbar-item">Administrador</a>
+        <% end %>
+      <% else %>
+        <a href="<%= new_client_session_path %>" class="navbar-item">Iniciar Sesión</a>
+        <a href="<%= new_client_registration_path %>" class="navbar-item">Crear Cuenta</a>
+      <% end %>
+    </div>
+
+    <div class="navbar-end">
+      <div class="navbar-item">
+        <div class="field is-grouped">
+          <p class="control">
+            <%= form_for(products_path, method: :get) do %>
+              <%= text_field_tag(:keywords, params[:keywords], placeholder: "Buscar productos", class: "is-rounded") %>
+              <%= collection_select(
+                :category, :id, Category.all.order('name ASC'), :id, :name,
+                {prompt: 'Ingrese categorias'}
+              ) %>
+              <%= submit_tag('Buscar', name: nil, class: "button is-info") %>
+            <% end %>
+            <%# <input type="text" placeholder="Buscar productos, marcas y más..." class="input is-rounded">
+          </p>
+          <p class="control">
+            <button type="button" class="button is-info">Buscar</button> %>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>

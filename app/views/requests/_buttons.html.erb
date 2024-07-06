@@ -1,0 +1,43 @@
+<% owner = Client.find(Product.find(request.product_id).client_id) %>
+<% client = Product.find(request.offer_id).client %>
+<% is_owner = owner == current_client %>
+
+<% link_style = "color: white;" %>
+
+<% if request.state == 'Pending' %>
+  <% if is_owner %>
+        <button class="button is-primary">
+            <%= link_to "Aceptar", accept_request_path(request.id), data: {
+                turbo_method: :post,
+                turbo_frame: "request",
+                turbo_action: "append",
+                turbo_confirm: "¿Aceptar solicitud?"
+            }, style: link_style %>
+        </button>
+        <button class="button is-danger">
+            <%= link_to "Rechazar", request_path(request.id), data: {
+                turbo_method: :delete,
+                turbo_frame: "request",
+                turbo_action: "append",
+                turbo_confirm: "¿Rechazar solictud?"
+            }, style: link_style %>
+        </button>
+    <% else %>
+        <button class="button is-danger">
+            <%= link_to "Cancelar solicitud", request_path(request.id), data: {
+                turbo_method: :delete,
+                turbo_frame: "request",
+                turbo_action: "append",
+                turbo_confirm: "¿Cancelar solicitud?"
+            }, style: link_style %>
+        </button>
+    <% end %>
+<% else %>
+    <button class="button is-primary">
+        <%= link_to "Enviar mensaje", create_chat_path(client.id, owner.id), data: {
+            turbo_method: :post,
+            turbo_frame: "request",
+            turbo_action: "append"
+        }, style: link_style %>
+    </button>
+<% end %>

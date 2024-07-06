@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  chat: one
+  client: cristiano
+  content: MyText
+
+two:
+  chat: one
+  client: messi
+  content: MyText2
+
+three:
+  chat: one
+  client: cristiano
+  content: MyText3
+
+four:
+  chat: two
+  client: messi
+  content: HelloWorld!

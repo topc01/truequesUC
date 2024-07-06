@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>TruequesUC - Intercambia tus muebles y productos de casa</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <style>
+        /* Agrega un estilo personalizado para el fondo degradado con imagen */
+        .hero {
+            background-image: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.3)), url('/assets/salon-con-diferentes-muebles-para-guardar-00560105_aa92107d_230503144421_1999x1333.jpg'); /* Ruta de tu imagen */
+            background-size: cover;
+            background-position: center;
+        }
+        /* Ajusta el color del texto para que sea visible en el fondo degradado */
+        .hero-body h1, .hero-body h2 {
+            color: #333333; /* Color de texto blanco */
+        }
+        footer {
+            padding: 20px;
+            text-align: center;
+            bottom: 0;
+            width: 100%
+        }
+    </style>
+</head>
+<body>
+    <section class="hero is-bold">
+        <div class="hero-body">
+            <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
+                <h1 class="title is-size-1">
+                    TruequesUC
+                </h1>
+                <h2 class="subtitle">
+                    Intercambia tus muebles y productos de casa
+                </h2>
+            </div>
+        </div>
+    </section>
+
+    <% if devise_mapping.registerable? && controller_name != 'sessions' %>
+        <div class="columns is-centered">
+            <div class="column is-6">
+                <div class="box">
+                    <h2 class="title">Registrarse</h2>
+
+                    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+                        <div class="field">
+                            <%= f.label "Nombre de usuario" %>
+                            <div class="control">
+                                <%= f.text_field :username, autofocus: true, autocomplete: "username", class: "input", required: true %>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <%= f.label "Mail" %>
+                            <div class="control">
+                                <%= f.email_field :email, autocomplete: "email", class: "input", required: true %>
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <%= f.label "Contraseña" %>
+                            <div class="control">
+                                <%= f.password_field :password, autocomplete: "new-password", class: "input", required: true %>
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <%= f.label "Confirmar contraseña" %>
+                            <div class="control">
+                                <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "input", required: true %>
+                            </div>
+                        </div>
+
+                        <div class="field is-grouped is-justify-content-center">
+                            <div class="control">
+                                <%= f.submit "Registrarse", class: "button is-primary" %>
+                            </div>
+                        </div>
+                    <% end %>
+                </div>
+            </div>
+        </div>
+    <% end %>
+</body>
+<footer>
+<p>© 2023 TruequesUC. Todos los derechos reservados.</p>
+</footer>
+
+</html>

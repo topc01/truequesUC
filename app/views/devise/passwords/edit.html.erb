@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Change Password</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+</head>
+<body>
+    <section class="hero is-primary is-bold">
+        <div class="hero-body">
+            <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
+                <h1 class="title is-size-1 has-text-white">
+                    TruequesUC
+                </h1>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="columns is-centered">
+            <div class="column is-6">
+                <div class="box">
+                    <h2 class="title">Change Your Password</h2>
+
+                    <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+                        <%= render "devise/shared/error_messages", resource: resource %>
+                        <%= f.hidden_field :reset_password_token %>
+
+                        <div class="field">
+                            <%= f.label :password, "New Password", class: "label" %>
+                            <% if @minimum_password_length %>
+                                <p class="help">(Minimum <%= @minimum_password_length %> characters)</p>
+                            <% end %>
+                            <div class="control">
+                                <%= f.password_field :password, autofocus: true, autocomplete: "new-password", class: "input" %>
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <%= f.label :password_confirmation, "Confirm New Password", class: "label" %>
+                            <div class="control">
+                                <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "input" %>
+                            </div>
+                        </div>
+
+                        <div class="field is-grouped is-justify-content-center">
+                            <div class="control">
+                                <%= f.submit "Change My Password", class: "button is-primary" %>
+                            </div>
+                        </div>
+                    <% end %>
+
+                    <%= render "devise/shared/links" %>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

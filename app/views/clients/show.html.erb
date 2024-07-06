@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>TruequesUC - Intercambia tus muebles y productos de casa</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <style>
+        /* Agrega un estilo personalizado para el fondo degradado con imagen */
+        .hero {
+            background-image: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.3)), url('/assets/salon-con-diferentes-muebles-para-guardar-00560105_aa92107d_230503144421_1999x1333.jpg'); /* Ruta de tu imagen */
+            background-size: cover;
+            background-position: center;
+        }
+        /* Ajusta el color del texto para que sea visible en el fondo degradado */
+        .hero-body h1, .hero-body h2 {
+            color: #333333; /* Color de texto blanco */
+        }
+        /* Establece un tamaño estándar para la foto de perfil */
+        .profile-image {
+            max-width: 300px;
+            max-height: 300px;
+            width: auto;
+            height: auto;
+        }
+        footer {
+            padding: 20px;
+            text-align: center;
+            bottom: 0;
+            width: 100%
+        }
+    </style>
+</head>
+<body>
+    <section class="hero is-bold">
+        <div class="hero-body">
+            <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
+                <h1 class="title is-size-1">
+                    TruequesUC
+                </h1>
+                <h2 class="subtitle">
+                    Intercambia tus muebles y productos de casa
+                </h2>
+            </div>
+        </div>
+    </section>
+    <section class="section">
+        <div class="columns is-centered">
+            <div class="column is-6">
+                <div class="box">
+                    <div class="content">
+                        <div class="field has-text-centered">
+                            <% if @client.image %>
+                                <%= image_tag @client.image_url, alt: 'Imagen de perfil', class: "profile-image" %>
+                            <% else %>
+                                <%= image_tag 'perfil.png', alt: 'Imagen de perfil', class: "profile-image" %>
+                            <% end %>
+                        </div>
+                        <div class="field">
+                            <label class="label">Nombre:</label>
+                            <p class="texto"><%= @client.name %></p>
+                        </div>
+                        <div class="field">
+                            <label class="label">Nombre de Usuario:</label>
+                            <p class="texto"><%= @client.username %></p>
+                        </div>
+                        <div class="field">
+                            <label class="label">Correo Electrónico:</label>
+                            <p class="texto"><%= @client.email %></p>
+                        </div>
+                        <div class="field">
+                            <label class="label">Número de teléfono:</label>
+                            <p class="texto"><%= @client.phone_number %></p>
+                        </div>
+                        <div class="field">
+                            <label class="label">Descripción:</label>
+                            <p class="texto"><%= @client.description %></p>
+                        </div>
+                        <div class="field">
+                            <% if @reviews.any? %>
+                                <label class="label">Reseñas:</label>
+                                <p class="texto"><%= render partial: "clients/reviews", locals: {
+                                    reviews: @reviews
+                                } %></p>
+                            <% else %>
+                                <p class="texto">No hay reseñas.</p>
+                            <% end %>
+                        </div>
+                        <% if @is_current_client %>
+                            <div class="field is-grouped is-justify-content-space-between">
+                                <div class="control">
+                                    <%= link_to "Editar Datos de Usuario", edit_profile_path(@client), class: "button is-info" %>
+                                </div>
+                                <div class="control">
+                                    <%= link_to "Cerrar Sesión", destroy_client_session_path, class: "button is-danger", data: {
+                                    turbo_method: :delete
+                                } %>
+                                </div>
+                                <div class="control">
+                                    <%= link_to "Cambiar Contraseña", edit_client_registration_path(@client), class: "button is-primary" %>
+                                </div>
+                            </div>
+                        <% else %>
+                            <div class="field is-grouped is-justify-content-center">
+                                <div class="control">
+                                    <%= link_to "Escribir una reseña", new_client_review_path(client_id: @client.id), class: "button is-info" %>
+                                </div>
+                            </div>
+                        <% end %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+<footer>
+<p>© 2023 TruequesUC. Todos los derechos reservados.</p>
+</footer>
+
+</html>

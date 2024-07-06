@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  product_id: <%= ActiveRecord::FixtureSet.identify(:lampara) %>
+  offer_id: <%= ActiveRecord::FixtureSet.identify(:pintura) %>
+  state: Pending
+
+two:
+  product_id: <%= ActiveRecord::FixtureSet.identify(:escultura) %>
+  offer_id: <%= ActiveRecord::FixtureSet.identify(:lampara) %>
+  state: Pending

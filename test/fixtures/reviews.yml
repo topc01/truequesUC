@@ -1,0 +1,15 @@
+# # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  client_id: <%= ActiveRecord::FixtureSet.identify(:cristiano) %>
+  sender_id: <%= ActiveRecord::FixtureSet.identify(:messi) %>
+  title: MyString1
+  grade: 1
+  content: MyText2
+
+two:
+  client_id: <%= ActiveRecord::FixtureSet.identify(:messi) %>
+  sender_id: <%= ActiveRecord::FixtureSet.identify(:cristiano) %>
+  title: MyString2
+  grade: 1
+  content: MyText2

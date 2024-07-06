@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>TruequesUC - Intercambia tus muebles y productos de casa</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <style>
+        /* Agrega un estilo personalizado para el fondo degradado con imagen */
+        .hero {
+            background-image: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.3)), url('/assets/salon-con-diferentes-muebles-para-guardar-00560105_aa92107d_230503144421_1999x1333.jpg'); /* Ruta de tu imagen */
+            background-size: cover;
+            background-position: center;
+        }
+        /* Ajusta el color del texto para que sea visible en el fondo degradado */
+        .hero-body h1, .hero-body h2 {
+            color: #333333; /* Color de texto blanco */
+        }
+        footer {
+            padding: 20px;
+            text-align: center;
+            bottom: 0;
+            width: 100%
+        }
+    </style>
+</head>
+<body>
+    <section class="hero is-bold">
+        <div class="hero-body">
+            <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
+                <h1 class="title is-size-1">
+                    TruequesUC
+                </h1>
+                <h2 class="subtitle">
+                    Intercambia tus muebles y productos de casa
+                </h2>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h1 class="title">Admin</h1>
+
+        <div class="columns is-multiline">
+            <% @clients.each do |client| %>
+                <div class="column is-6"> <!-- Ajusta el ancho según tu preferencia -->
+                    <div class="box">
+                        <h2 class="subtitle has-text-weight-bold">Usuario: <%= client.email %></h2>
+
+                            <h2 class="subtitle has-text-weight-bold">Reseñas</h2>
+                            <ul>
+                                <% client.reviews.each do |review| %>
+                                    <li>
+                                        <%= review.title %>
+                                        <%= link_to "Eliminar reseña", admin_review_destroy_path(review.id), class: "button is-danger", data: {
+                                            turbo_method: :delete,
+                                            turbo_confirm: "Confirme para eliminar reseña"
+                                        }%>
+                                    </li>
+                                <% end %>
+                            </ul>
+
+                            <h2 class="subtitle has-text-weight-bold">Productos</h2>
+                            <ul>
+                                <% client.products.each do |product| %>
+                                    <li style="margin-bottom: 10px;"> <!-- Agregamos un margen vertical -->
+                                        <%= product.title %>
+                                        <%= link_to "Eliminar producto", admin_product_destroy_path(product.id), class: "button is-danger", data: {
+                                            turbo_method: :delete,
+                                            turbo_confirm: "Confirme para eliminar producto"
+                                        }%>
+                                    </li>
+                                <% end %>
+                            </ul>
+
+                        <%= link_to "Eliminar usuario", admin_client_destroy_path(client.id), class: "button is-danger", data: {
+                            turbo_method: :delete,
+                            turbo_confirm: "Confirme para eliminar usuario"
+                        }%>
+                    </div>
+                </div>
+            <% end %>
+        </div>
+    </section>
+    <section class="section">
+    <%= link_to "Cerrar Sesión", destroy_administrator_session_path, data: { turbo_method: :delete }, class: "button is-danger" %>
+    <footer>
+    <p>© 2023 TruequesUC. Todos los derechos reservados.</p>
+</footer>
+
+</body>
+</html>
